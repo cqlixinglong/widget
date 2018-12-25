@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>头部标题</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<style>
+			.empty {
+				margin-top: 50px;
+			}
+			
+			.img {
+				display: block;
+				width: 100%;
+				height: 50.668vw;
+			}
+			
+			.lbackheader {
+				width: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 9;
+				background: #FFFFFF;
+			}
+			
+			.imghide {
+				visibility: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="lbackheader">
+			<div tapmode onclick="fncloseWin()">
+				<img src="../image/img/back.png" />
+			</div>
+			<p>头部标题</p>
+			<div></div>
+		</header>
+		<div class="empty">
+			<img class="img" src="../image/teacherbg.png" tapmode onclick="fnshow();" />
+			<p>11111111111111占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/zepto.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			$api.fixStatusBar($api.dom('header'));
+			api.addEventListener({
+				name: 'keyback'
+			}, function(ret, err) {
+				var moviePlayer = api.require('moviePlayer');
+				moviePlayer.isFullscreen(function(ret) {
+					if(ret.state) {
+						var moviePlayer = api.require('moviePlayer');
+						moviePlayer.onBack();
+					} else {
+						fncloseWin();
+					}
+				});
+			});
+		}
+
+		function fnshow() {
+			moviePlayer(); //  (最佳) 滚动随页面滚动处理头部定位显示或隐藏
+			//			videoopenPlay($api.dom('.empty img').offsetHeight); // win头部在安卓上出现
+		}
+
+		function moviePlayer() {
+			var moviePlayer = api.require('moviePlayer');
+			moviePlayer.open({
+				rect: {
+					x: 0,
+					y: $api.dom('header').offsetHeight,
+					w: api.frameWidth,
+					h: $api.dom('.img').offsetHeight - 15
+				},
+				texts: {
+					title: '足球'
+				},
+				styles: {
+					head: {
+						bg: 'rgba(0,0,0,0)',
+						height: 44,
+						y: 0,
+						title: {
+							size: 20,
+							color: '#fff',
+							width: 720,
+							leftMargin: 10
+						},
+						backSize: 20,
+						backImg: 'widget://image/backimg.png'
+					},
+					foot: {
+						bg: 'rgba(0,0,0,0.2)',
+						height: 44,
+						palyBtn: {
+							size: 20,
+							playImg: 'widget://image/playimg.png',
+							pauseImg: 'widget://image/pauseimg.png',
+							marginLeft: 10
+						},
+						currentTimeLabel: {
+							textSize: 14,
+							textColor: "#FFF",
+							textWidth: 40,
+							marginLeft: 10
+						},
+						seekBar: {
+							sliderW: 20,
+							sliderH: 20,
+							progressColor: '#aaaaa9',
+							progressSelected: '#22cbd9',
+							marginLeft: 10,
+							marginRight: 10
+						},
+						totalTimeLabel: {
+							textSize: 14,
+							textColor: "#FFF",
+							textWidth: 40,
+							marginRight: 10
+						},
+						fullscreenBtn: {
+							size: 20,
+							verticalImg: 'widget://image/verticalimg.png',
+							horizontalImg: 'widget://image/horizontalimg.png',
+						}
+					}
+				},
+				path: 'http://7o50kb.com2.z0.glb.qiniucdn.com/c1.1.mp4',
+				showBack: false,
+				autorotation:false,
+				isShowStatusBar: false,
+				//				fixed:false,
+			}, function(ret, err) {
+				$(".img").addClass('imghide');
+			});
+		}
+
+		function videoopenPlay(offsetHeight) {
+			var videoPlayer = api.require('videoPlayer');
+			videoPlayer.openPlay({
+				rect: {
+					x: 0,
+					y: $api.dom('header').offsetHeight,
+					w: api.winWidth,
+					h: offsetHeight
+				},
+				texts: {
+					head: {
+						title: '顶部文字'
+					}
+				},
+				centerPlayBtn: {
+					size: 30, // 数字类型；按钮大小；默认：30
+					iconPath: 'widget://image/playIcon.png' // 字符串类型；图标路径；
+				},
+				styles: {
+					head: {
+						bg: 'rgba(0.5,0.5,0.5,0.7)',
+						height: 44,
+						y: 20,
+						titleSize: 20,
+						titleColor: '#fff',
+						backSize: 44,
+						backImg: 'fs://img/back.png',
+						customButtons: [],
+					},
+					foot: {
+						bg: 'rgba(0.5,0.5,0.5,0.7)',
+						height: 44,
+						playSize: 44,
+						playImg: 'fs://img/paly.png',
+						pauseImg: 'fs://img/pause.png',
+						timeSize: 14,
+						timeColor: '#fff',
+						sliderImg: 'fs://img/slder.png',
+						progressColor: '#696969',
+						progressSelected: '#76EE00',
+						verticalImg: '',
+						horizontalImg: '',
+
+					}
+				},
+				path: 'http://7o50kb.com2.z0.glb.qiniucdn.com/c1.1.mp4', //（可选项）字符串类型；文档的路径，支持网络和本地（fs://）路径；默认：未传值时不播放
+			}, function(ret, err) {
+				setTimeout(function() {
+					$(".img").hide();
+				}, 2000)
+			});
+		}
+	</script>
+
+</html>

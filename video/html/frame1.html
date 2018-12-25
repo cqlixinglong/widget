@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>开发</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<style>
+			.empty {
+				text-align: center;
+				padding: 120px 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="empty">
+			<script id="test" type="text/html">
+				<h1>
+					{{title}}
+				</h1>
+				<ul>
+					{{each list value i}}
+					<li>
+						索引{{i+1}}：{{value}}
+					</li>
+					{{/each}}
+				</ul>
+				<ul>
+					{{each person}} {{if $value.age==18}}
+					<h1>
+						18
+					</h1> {{else if $value.age==19}}
+					<img src="{{$value.img}}" />
+					<h2>
+						19
+					</h2> {{else}}
+					<li>
+						编号：{{$index+1}}姓名：{{$value.name}}年龄：{{$value.age}}
+					</li>
+					{{/if}} {{/each}}
+				</ul>
+			</script>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/zepto.js"></script>
+	<script type="text/javascript" src="../script/template.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			api.setCustomRefreshHeaderInfo({
+				bgColor: '#eee',
+				tips: {
+					pull: '下拉刷新',
+					threshold: '松开立即刷新',
+					load: '正在刷新'
+				}
+			}, function() {
+				setTimeout(function() {
+					api.refreshHeaderLoadDone()
+				}, 3000)
+			});
+		}
+		var data = {
+			title: '标签',
+			list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他'],
+			person: [{
+					name: "jack",
+					age: 18,
+					img: '../icon/icon150x150.png'
+				},
+				{
+					name: "tom",
+					age: 19,
+					img: '../icon/icon150x150.png'
+				},
+				{
+					name: "jerry",
+					age: 20,
+					img: '../icon/icon150x150.png'
+				},
+				{
+					name: "kid",
+					age: 21,
+					img: '../icon/icon150x150.png'
+				},
+				{
+					name: "jade",
+					age: 22,
+					img: '../icon/icon150x150.png'
+				}
+			]
+		};
+		var html = template('test', data);
+		$("#empty").append(html);
+		var html2 = template('test', data);
+		$("#empty").append(html2);
+	</script>
+
+</html>

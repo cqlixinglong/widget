@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>头部标题</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<style>
+			.empty {}
+			
+			.img {
+				display: block;
+				width: 100%;
+				height: 50.668vw;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="empty">
+			<img class="img" src="../image/teacherbg.png" tapmode onclick="fnshow();" />
+			<p>占位位置占位位置占位位置占位位置占位位置</p>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/zepto.js"></script>
+	<script type="text/javascript" src="../script/config.js"></script>
+	<script type="text/javascript">
+		apiready = function() {}
+
+		function fnshow() {
+			videoPlayerplay(); // 全屏横屏显示，支持屏幕随设备自动旋转 (体验好)
+			//			playModule(); // 收费666 音频播放，视频播放，音轨切换，试看播放，弹幕，直播等功能（体验好）
+		}
+		function videoPlayerplay() {
+			var videoPlayer = api.require('videoPlayer');
+			videoPlayer.play({
+				texts: {
+					head: {
+						title: '顶部文字'
+					}
+				},
+				styles: {
+					head: {
+						bg: 'rgba(0.5,0.5,0.5,0.7)',
+						height: 44,
+						titleSize: 20,
+						titleColor: '#fff',
+						backSize: 44,
+						backImg: 'fs://img/back.png',
+						setSize: 44,
+						setImg: 'fs://img/set.png'
+					},
+					foot: {
+						bg: 'rgba(0.5,0.5,0.5,0.7)',
+						height: 44,
+						playSize: 44,
+						playImg: 'fs://img/back.png',
+						pauseImg: 'fs://img/back.png',
+						nextSize: 44,
+						nextImg: 'fs://img/back.png',
+						timeSize: 14,
+						timeColor: '#fff',
+						sliderImg: 'fs://img/slder.png',
+						progressColor: '#696969',
+						progressSelected: '#76EE00'
+					}
+				},
+				path: 'http://7o50kb.com2.z0.glb.qiniucdn.com/c1.1.mp4', //（可选项）字符串类型；文档的路径，支持网络和本地（fs://）路径；默认：未传值时不播放
+			}, function(ret, err) {});
+		}
+
+		function playModule() {
+			var obj = api.require('playModule');
+			obj.play({
+				rect: {
+					x: 0,
+					y: 0,
+					w: api.frameWidth,
+					h: $api.dom('img').offsetHeight
+				},
+				fixedOn: api.frameName,
+				url: 'https://www.hotniu.cn/video/类目卡首屏.mp4',
+				title: 'test',
+				enableFull: false, //本次播放视频是否全屏播放
+				isShowDanmu: false, //是否开启弹幕功能
+			}, function(ret, err) {
+				setTimeout(function() {
+					obj.sendDanmuList({
+						index: ret.index,
+						isLoop: true,
+						data: [{
+							text: '测试1',
+							color: '#FF7F24'
+						}, {
+							text: '测试2',
+							color: '#FF7F24'
+						}],
+					}, function(ret, err) {});
+				}, 1000)
+			});
+		}
+	</script>
+
+</html>
